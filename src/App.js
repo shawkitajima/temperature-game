@@ -9,6 +9,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [show, setShow] = useState(false);
   const [next, setNext] = useState(false);
+  const [over, setOver] = useState(false);
   // we have to initialize temps because the TempCard props relies on 
   const [temps, setTemps] = useState({
     set1: {},
@@ -23,6 +24,7 @@ function App() {
     <div className="App">
       <h1>Welcome to the Temperatue Game!</h1>
       <h2>Which place is currently hotter?</h2>
+      { over && <h1>Game Over!</h1>}
       <h1>Your score: {score}</h1>
       <div className="flexHori">
         <div className="tempChoice">
@@ -36,6 +38,7 @@ function App() {
             else {
               setScore(0);
               setShow(true);
+              setOver(true);
             }
           }}>Me!</button>
         </div>
@@ -50,6 +53,7 @@ function App() {
             else {
               setScore(0);
               setShow(true);
+              setOver(true);
             }
           }}>Me!</button>
         </div>
@@ -58,8 +62,9 @@ function App() {
         <button onClick={() => {
           setShow(false);
           setNext(!next);
+          setOver(false);
         }}>
-          Next
+          Play
         </button>}
     </div>
   );
