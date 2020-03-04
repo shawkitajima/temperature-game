@@ -44,5 +44,14 @@
 }
 
 .tempChoice {
+  padding: 2rem;
   border: 2px solid black;
+}
+
+.container {
+  margin: 2rem 30rem;
+}
+
+nav {
+  font-size: 1.5rem;
 }

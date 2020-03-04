@@ -6,14 +6,14 @@ import ScorePage from './pages/ScorePage/ScorePage';
 
 const App = () => {
   return (
-    <>
-    <nav>
-      <Link to='/'>Game</Link>
-      <Link to='/scores'>High Scores</Link>
-    </nav>
-    <Route exact path='/' component={GamePage}/>
-    <Route exact path='/scores' component={ScorePage}/>
-    </>
+    <div className="container">
+      <nav className='flexHori'>
+        <Link to='/'>Game</Link>
+        <Link to='/scores'>High Scores</Link>
+      </nav>
+      <Route exact path='/' component={GamePage}/>
+      <Route exact path='/scores' component={ScorePage}/>
+    </div>
   )
 }
 

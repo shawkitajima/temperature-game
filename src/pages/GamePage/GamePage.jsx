@@ -26,7 +26,7 @@ const GamePage = () => {
           let current = res;
           console.log(current);
           let last = current.pop();
-          if (!last || score >= last.score || current.length <= 18) {
+          if (!last || score > last.score || current.length <= 18) {
               let name = prompt('You got a high score! Please enter your name!')
               let obj = {
                   score,
