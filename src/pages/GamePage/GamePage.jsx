@@ -1,7 +1,8 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import '../../App.css'
-import tempService from '../../utils/tempService'
+import tempService from '../../utils/tempService';
+import scoreService from '../../utils/scoreService';
 import TempCard from '../../components/TempCard/TempCard';
 
 const GamePage = () => {
@@ -19,6 +20,23 @@ const GamePage = () => {
     tempService.getTemps().then(res => setTemps(res))
   }, [next])
 
+  const handleGameOver = score => {
+      console.log('score', score);
+      scoreService.getScores().then(res => {
+          let current = res;
+          console.log(current);
+          let last = current.pop();
+          if (!last || score >= last.score || current.length <= 18) {
+              let name = prompt('You got a high score! Please enter your name!')
+              let obj = {
+                  score,
+                  name
+              };
+              scoreService.setScore(obj).then(res => console.log(res));
+          }
+      });
+  }
+
   return (
     <div className="App">
       <h1>Welcome to the Temperatue Game!</h1>
@@ -31,13 +49,14 @@ const GamePage = () => {
           {show && <h2>{temps.set1.temperature}°F</h2>}
           <button disabled={show} onClick={() => {
             if (temps.set1.outcome) {
-              setScore(score + 1);
-              setShow(true);
+                setScore(score + 1);
+                setShow(true);
             }
             else {
-              setScore(0);
-              setShow(true);
-              setOver(true);
+                handleGameOver(score);
+                setScore(0);
+                setShow(true);
+                setOver(true);
             }
           }}>Me!</button>
         </div>
@@ -46,24 +65,25 @@ const GamePage = () => {
           {show && <h2>{temps.set2.temperature}°F</h2>}
           <button disabled={show} onClick={() => {
             if (temps.set2.outcome) {
-              setScore(score + 1);
-              setShow(true);
+                setScore(score + 1);
+                setShow(true);
             }
             else {
-              setScore(0);
-              setShow(true);
-              setOver(true);
+                handleGameOver(score);
+                setScore(0);
+                setShow(true);
+                setOver(true);
             }
           }}>Me!</button>
         </div>
       </div>
       { show && 
         <button onClick={() => {
-          setShow(false);
-          setNext(!next);
-          setOver(false);
+            setShow(false);
+            setNext(!next);
+            setOver(false);
         }}>
-          Play
+            Play
         </button>}
     </div>
   );
