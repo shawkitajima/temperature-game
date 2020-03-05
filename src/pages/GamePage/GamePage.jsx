@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import '../../App.css'
+import '../App/App.css'
 import tempService from '../../utils/tempService';
 import scoreService from '../../utils/scoreService';
 import TempCard from '../../components/TempCard/TempCard';
